@@ -53,6 +53,7 @@ def calculateTotalDistance(pairedList):
 
     return sum
 
+# Count nb of occurrence of the left number in the right list then multiply. And add to total
 def similarityScore(rightNbList, leftNbList):
     occ = 0
     sum = 0
