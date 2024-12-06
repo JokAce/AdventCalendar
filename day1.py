@@ -15,41 +15,16 @@ def separateColumns(file):
 
     return rightNbList, leftNbList
 
-# Pair smallest number from right list with left list then second smallest number, etc
-def pairSmallestNb(rightNbList, leftNbList):
-
-    rList = rightNbList.copy()
-    lList = leftNbList.copy()
-
-    pairedList = []
-
-    while rList or lList:
-
-        smallestNbR = rList[0]
-        smallestNbL = lList[0]
-
-        for nb in rList:
-            if nb < smallestNbR:
-                smallestNbR = nb
-
-        rList.remove(smallestNbR)
-
-        for nb in lList:
-            if nb < smallestNbL:
-                smallestNbL = nb
-
-        lList.remove(smallestNbL)
-
-        pairedList.append((smallestNbL, smallestNbR))
-
-    return pairedList
-
 # calculate the distance between paired values and add all of them
-def calculateTotalDistance(pairedList):
+def calculateTotalDistance(rightNbList, leftNbList):
+
     sum = 0
 
-    for nbL, nbR in pairedList:
-        sum += abs(nbL-nbR)
+    rightNbList.sort()
+    leftNbList.sort()
+
+    for i in range(len(rightNbList)):
+        sum += abs(rightNbList[i] - leftNbList[i])
 
     return sum
 
@@ -67,10 +42,9 @@ def similarityScore(rightNbList, leftNbList):
 
     return sum
 
-def day1():
+def day1(): #('Total Distance: ', 1941353, 'Similarity Score: ', 22539317)
     rCol, lCol = separateColumns("inputs/day1_input.txt")
-    pairedList = pairSmallestNb(rCol, lCol)
-    totalDistance = calculateTotalDistance(pairedList)
+    totalDistance = calculateTotalDistance(rCol,lCol)
     score = similarityScore(rCol, lCol)
 
     return "Total Distance: ", totalDistance, "Similarity Score: ", score
