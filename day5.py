@@ -54,9 +54,8 @@ def correctWrongUpdates(rules, updates):
 
     for update in updates:
         if rightUpdates(rules, update) == 0:
-            gr = dfs(update[0], graph(update, rules))
+            gr = dfs(graph(update, rules))
             sum += gr[len(gr) // 2]
-            print(gr)
 
     return sum
 
@@ -68,11 +67,10 @@ def graph(update, rules):
             if update[i] in rules and update[j] in rules[update[i]]:
                 gr[update[i]].append(update[j])
 
-    print(gr)
 
     return gr
 
-def dfs(node, graph, visited=None, stack=None):
+def dfs(graph, visited=None, stack=None):
     if visited is None:
         visited = set()
     if stack is None:
