@@ -4,9 +4,10 @@ from day3 import *
 from day4 import *
 from day5 import *
 from day6 import *
+from day7 import *
 
 def main():
-    print(day6())
+    print(day7())
 
 
 
